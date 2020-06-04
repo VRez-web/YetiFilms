@@ -1,7 +1,8 @@
 const IMG_URL = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2'
 
 const tvList = document.querySelector('.tv-list'),
-    tvHeadTitle = document.querySelector('.tv-search__result-txt')
+    tvHeadTitle = document.querySelector('.tv-search__result-txt'),
+    pagination = document.querySelector('.pagination')
 
 
 const renderCard = (response, target) => {
@@ -22,8 +23,8 @@ const renderCard = (response, target) => {
             id
         } = item
 
-        const posterImg = poster ? IMG_URL + poster : '/assets/img/no-poster.jpg'
-        const backdropIMG = backdrop == null ? '/assets/img/no-poster.jpg' : IMG_URL + backdrop
+        const posterImg = poster ? IMG_URL + poster : './assets/img/no-poster.jpg'
+        const backdropIMG = backdrop ? IMG_URL + backdrop : ''
         const voteElem = vote ? ` <span class="tv-card__vote">${vote}</span> ` : ''
 
         const card = document.createElement('li')
@@ -39,6 +40,13 @@ const renderCard = (response, target) => {
         `
         tvList.append(card)
     })
+    pagination.innerHTML = ''
+    if (!target && response.total_pages > 1) {
+        for (let i = 1; i <= response.total_pages; i++) {
+            pagination.innerHTML += `<li><a href="#" class="pages">${i}</a></li>`
+        }
+
+    }
 }
 
-moduleRendCard=renderCard
+moduleRendCard = renderCard

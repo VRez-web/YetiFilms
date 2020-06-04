@@ -12,7 +12,8 @@ const menu = document.querySelector('.menu'),
     genresList = document.querySelector('.genres-list'),
     rating = document.querySelector('.rating'),
     modalDescription = document.querySelector('.description'),
-    modalLink = document.querySelector('.modal__link')
+    modalLink = document.querySelector('.modal__link'),
+    pagination = document.querySelector('.pagination')
 
 
 
@@ -45,6 +46,22 @@ menu.addEventListener('click', event => {
         dropdown.classList.toggle('active')
 
     }
+
+    if (target.closest('#top-rated')) {
+        dbService.getTopRated().then((response) => moduleRendCard(response, target))
+    }
+    if (target.closest('#popular')) {
+        dbService.getPopular().then((response) => moduleRendCard(response, target))
+    }
+    if (target.closest('#today')) {
+        dbService.getNewToday().then((response) => moduleRendCard(response, target))
+    }
+    if (target.closest('#week')) {
+        dbService.getNewWeek().then((response) => moduleRendCard(response, target))
+    }
+
+
+
 
 })
 
@@ -90,7 +107,7 @@ tvList.addEventListener('click', event => {
     event.preventDefault()
     const target = event.target
     const card = target.closest('.tv-card')
-    const cardImg=document.querySelector('.modal-img')
+    const modalCardImg = document.querySelector('.modal-img')
 
     if (card) {
         dbService.getTvShow(card.id)
@@ -106,11 +123,14 @@ tvList.addEventListener('click', event => {
 
 
                 if (posterPath) {
-                    cardImg.src = IMG_URL + posterPath
-                    cardImg.alt = title
+                    modalCardImg.src = IMG_URL + posterPath
+                    modalCardImg.alt = title
 
 
+                } else {
+                    modalCardImg.src = './assets/img/no-poster.jpg'
                 }
+
 
                 modalTitle.textContent = title
                 genresList.textContent = ''
@@ -133,5 +153,15 @@ tvList.addEventListener('click', event => {
 modal.addEventListener('click', event => {
     if (event.target.closest('.close') || event.target.classList.contains('modal')) {
         modal.classList.add('hide')
+    }
+})
+
+
+//переход на следующею страницу
+pagination.addEventListener('click', event => {
+    event.preventDefault()
+    const target=event.target
+    if(target.classList.contains('pages')){
+        dbService.getNextPage(target.textContent).then(moduleRendCard)
     }
 })

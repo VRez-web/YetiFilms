@@ -18,12 +18,21 @@
 
 
     }
+
+    //Все связанное с сериалами(поиск, и запросы по категориям)
+
     getSearchResults = query => {
         this.temp = `${this.SERVER}/search/tv?api_key=${this.API_KEY}&language=ru-RU&query=${query}`
         return this.getData(this.temp)
     }
+    
+    getNextPage = page => this.getData(this.temp + '&page=' + page)
+    
     getTvShow = id => this.getData(`${this.SERVER}/tv/${id}?api_key=${this.API_KEY}&language=ru-RU`)
- 
+    getPopular=()=>this.getData(`${this.SERVER}/tv/popular?api_key=${this.API_KEY}&language=ru-RU`)
+    getTopRated=()=>this.getData(`${this.SERVER}/tv/top_rated?api_key=${this.API_KEY}&language=ru-RU`)
+    getNewWeek=()=>this.getData(`${this.SERVER}/tv/on_the_air?api_key=${this.API_KEY}&language=ru-RU`)
+    getNewToday=()=>this.getData(`${this.SERVER}/tv/airing_today?api_key=${this.API_KEY}&language=ru-RU`)
 }
 
 

@@ -71,6 +71,10 @@
     li {
       color: $white-color;
       width: 250px;
+
+      &:nth-child(1){
+        text-align: center;
+      }
     }
     a {
       color: $white-color;
@@ -87,9 +91,7 @@
       display: block;
       margin-bottom: 5px;
 
-      // &::after{
 
-      // }
     }
   }
 }
@@ -200,4 +202,6 @@
 .modal-body__content {
   width: 100%;
   padding-left: 80px;
+  overflow-y: auto;
+  max-height: 505px;
 }
