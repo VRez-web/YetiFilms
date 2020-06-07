@@ -13,8 +13,9 @@ const menu = document.querySelector('.menu'),
     rating = document.querySelector('.rating'),
     modalDescription = document.querySelector('.description'),
     modalLink = document.querySelector('.modal__link'),
-    pagination = document.querySelector('.pagination')
-
+    pagination = document.querySelector('.pagination'),
+    trailer = document.querySelector('#trailer'),
+    trailerHead=document.querySelector('.head-trailer')
 
 
 
@@ -75,7 +76,7 @@ searchForm.addEventListener('submit', event => {
     searchFormInput.value = ''
     if (value) {
         dbService.getSearchResults(value).then(moduleRendCard)
-        console.log(dbService.getSearchResults(value))
+
 
     }
 
@@ -141,7 +142,39 @@ tvList.addEventListener('click', event => {
                 rating.textContent = voteAverage
                 modalDescription.textContent = overview
                 modalLink.href = homepage
-            }).then(modal.classList.remove('hide'))
+
+                return card.id
+            })
+            .then(dbService.getTrailer)
+            .then(response => {
+                trailer.textContent = ''
+
+                trailerHead.classList.add('hide')
+
+                if(response.results.length){
+                    trailerHead.classList.remove('hide')
+                    response.results.forEach(item => {
+                      
+                        const trailerItem = document.createElement('li')
+    
+                        trailerItem.innerHTML = `
+                            <iframe 
+                                width="450" 
+                                height="300" 
+                                src="https://www.youtube.com/embed/${item.key}"
+                                frameborder="0" 
+                                allowfullscreen>
+                            </iframe>
+                            <h4>${item.name}</h4>
+                        `
+    
+                        trailer.append(trailerItem)
+                    })
+                }
+           
+            })
+            .then(modal.classList.remove('hide'))
+
     }
 })
 
@@ -160,8 +193,11 @@ modal.addEventListener('click', event => {
 //переход на следующею страницу
 pagination.addEventListener('click', event => {
     event.preventDefault()
-    const target=event.target
-    if(target.classList.contains('pages')){
+    // const pageActive=document.querySelector('.page-item')
+    const target = event.target
+    // pageActive.classList.add('active')
+    if (target.classList.contains('page-link')) {   
         dbService.getNextPage(target.textContent).then(moduleRendCard)
+
     }
 })

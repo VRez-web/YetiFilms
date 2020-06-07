@@ -43,7 +43,7 @@ const renderCard = (response, target) => {
     pagination.innerHTML = ''
     if (!target && response.total_pages > 1) {
         for (let i = 1; i <= response.total_pages; i++) {
-            pagination.innerHTML += `<li><a href="#" class="pages">${i}</a></li>`
+            pagination.innerHTML += `<li class="page-item"><a href="#" class="page-link">${i}</a></li>`
         }
 
     }
