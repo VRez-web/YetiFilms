@@ -89,7 +89,31 @@
     &-dropdown {
       width: 100%;
       display: block;
-      margin-bottom: 5px;
+      position: relative;
+
+      &::after {
+        content: "";
+        background: url(../img/next.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: inline-block;
+        background-position: center;
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+      }
+
+      &.active {
+        &::after {
+          content: "";
+          background: url(../img/down-arrow.svg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
     }
   }
 }
@@ -97,6 +121,16 @@
   height: 0;
   overflow: hidden;
   text-align: center;
+  background-color: #0c3455;
+
+  li {
+    padding: 5px;
+
+    &:focus,
+    :hover {
+      text-decoration: underline;
+    }
+  }
 }
 .active + .dropdown-items {
   width: 100%;
@@ -216,69 +250,79 @@
   }
 }
 
+.preloader {
+display: none;
+position: fixed;
+top:0;
+left:0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 1100;
+}
 .cssload-triangles {
-  transform: translate(-50%, -50%);
-  height: 79px;
-  width: 88px;
-  display: none;
-  background-color: rgba(0, 0, 0, 0.8);
+  height: 172px;
+  width: 191px;
+  transform: translate(50%, 50%);
   position: absolute;
-  left: 50%;
+  top: 20%;
+  right: 50%;
+
 }
 
 .cssload-tri {
   position: absolute;
   animation: cssload-pulse 862.5ms ease-in infinite;
-  border-top: 26px solid rgb(33, 90, 109);
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
+  border-top: 57px solid rgb(3,37,65);
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
   border-bottom: 0px;
 }
 .cssload-tri.cssload-invert {
   border-top: 0px;
-  border-bottom: 26px solid rgb(33, 90, 109);
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
+  border-bottom: 57px solid rgb(3,37,65);
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
 }
 .cssload-tri:nth-child(1) {
-  left: 29px;
+  left: 64px;
 }
 .cssload-tri:nth-child(2) {
-  left: 15px;
-  top: 26px;
+  left: 32px;
+  top: 57px;
   animation-delay: -143.75ms;
 }
 .cssload-tri:nth-child(3) {
-  left: 29px;
-  top: 26px;
+  left: 64px;
+  top: 57px;
 }
 .cssload-tri:nth-child(4) {
-  left: 44px;
-  top: 26px;
+  left: 96px;
+  top: 57px;
   animation-delay: -718.75ms;
 }
 .cssload-tri:nth-child(5) {
-  top: 53px;
+  top: 115px;
   animation-delay: -287.5ms;
 }
 .cssload-tri:nth-child(6) {
-  top: 53px;
-  left: 15px;
+  top: 115px;
+  left: 32px;
   animation-delay: -287.5ms;
 }
 .cssload-tri:nth-child(7) {
-  top: 53px;
-  left: 29px;
+  top: 115px;
+  left: 64px;
   animation-delay: -431.25ms;
 }
 .cssload-tri:nth-child(8) {
-  top: 53px;
-  left: 44px;
+  top: 115px;
+  left: 96px;
   animation-delay: -575ms;
 }
 .cssload-tri:nth-child(9) {
-  top: 53px;
-  left: 58px;
+  top: 115px;
+  left: 128px;
   animation-delay: -575ms;
 }
 

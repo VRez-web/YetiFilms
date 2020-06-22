@@ -5,7 +5,7 @@ const tvList = document.querySelector('.tv-list'),
     pagination = document.querySelector('.pagination')
 
 
-const renderCard = (response, target) => {
+ const renderCard  = (response, target) => {
     tvList.textContent = ''
 
     if (!response.total_results) {

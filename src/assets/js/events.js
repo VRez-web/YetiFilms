@@ -15,7 +15,9 @@ const menu = document.querySelector('.menu'),
     modalLink = document.querySelector('.modal__link'),
     pagination = document.querySelector('.pagination'),
     trailer = document.querySelector('#trailer'),
-    trailerHead=document.querySelector('.head-trailer')
+    trailerHead = document.querySelector('.head-trailer'),
+    preloader = document.querySelector('.preloader'),
+    tvHeadTitle = document.querySelector('.tv-search__result-txt')
 
 
 
@@ -56,6 +58,8 @@ menu.addEventListener('click', event => {
     }
     if (target.closest('#today')) {
         dbService.getNewToday().then((response) => moduleRendCard(response, target))
+
+
     }
     if (target.closest('#week')) {
         dbService.getNewWeek().then((response) => moduleRendCard(response, target))
@@ -75,7 +79,13 @@ searchForm.addEventListener('submit', event => {
     const value = searchFormInput.value.trim()
     searchFormInput.value = ''
     if (value) {
-        dbService.getSearchResults(value).then(moduleRendCard)
+        preloader.style.display = 'block'
+
+        dbService.getSearchResults(value)
+            .then(moduleRendCard)
+            .finally(() => {
+                preloader.style.display = ''
+            })
 
 
     }
@@ -103,14 +113,14 @@ tvList.addEventListener('mouseout', changeImg)
 
 //Работа с модальным окном
 
-
 tvList.addEventListener('click', event => {
     event.preventDefault()
     const target = event.target
     const card = target.closest('.tv-card')
     const modalCardImg = document.querySelector('.modal-img')
-
+    preloader.style.display = 'block'
     if (card) {
+
         dbService.getTvShow(card.id)
             .then(({
                 poster_path: posterPath,
@@ -151,12 +161,12 @@ tvList.addEventListener('click', event => {
 
                 trailerHead.classList.add('hide')
 
-                if(response.results.length){
+                if (response.results.length) {
                     trailerHead.classList.remove('hide')
                     response.results.forEach(item => {
-                      
+
                         const trailerItem = document.createElement('li')
-    
+
                         trailerItem.innerHTML = `
                             <iframe 
                                 width="450" 
@@ -167,13 +177,14 @@ tvList.addEventListener('click', event => {
                             </iframe>
                             <h4>${item.name}</h4>
                         `
-    
+
                         trailer.append(trailerItem)
                     })
                 }
-           
+
             })
             .then(modal.classList.remove('hide'))
+            .finally(() => preloader.style.display = '')
 
     }
 })
@@ -192,12 +203,24 @@ modal.addEventListener('click', event => {
 
 //переход на следующею страницу
 pagination.addEventListener('click', event => {
-    event.preventDefault()
+
     // const pageActive=document.querySelector('.page-item')
     const target = event.target
     // pageActive.classList.add('active')
-    if (target.classList.contains('page-link')) {   
+    if (target.classList.contains('page-link')) {
         dbService.getNextPage(target.textContent).then(moduleRendCard)
 
     }
+})
+
+
+
+//Контент при загрузке страницы
+document.addEventListener('DOMContentLoaded', event => {
+    const target = event.target
+    tvHeadTitle.textContent = 'Новинки на сегодня'
+    dbService.getNewToday().then((response) => {moduleRendCard(response, target)
+        tvHeadTitle.textContent = 'Новинки на сегодня:'
+    })
+
 })
