@@ -51,18 +51,30 @@ menu.addEventListener('click', event => {
     }
 
     if (target.closest('#top-rated')) {
-        dbService.getTopRated().then((response) => moduleRendCard(response, target))
+        dbService.getTopRated().then((response) => {
+            moduleRendCard(response, target)
+            tvHeadTitle.textContent = 'Лучшие сериалы:'
+        })
     }
     if (target.closest('#popular')) {
-        dbService.getPopular().then((response) => moduleRendCard(response, target))
+        dbService.getPopular().then((response) => {
+            moduleRendCard(response, target)
+            tvHeadTitle.textContent = 'Популярные сериалы:'
+        })
     }
     if (target.closest('#today')) {
-        dbService.getNewToday().then((response) => moduleRendCard(response, target))
+        dbService.getNewToday().then((response) => {
+            moduleRendCard(response, target)
+            tvHeadTitle.textContent = 'Новинки за сегодня:'
+        })
 
 
     }
     if (target.closest('#week')) {
-        dbService.getNewWeek().then((response) => moduleRendCard(response, target))
+        dbService.getNewWeek().then((response) => {
+            moduleRendCard(response, target)
+            tvHeadTitle.textContent = 'Новинки за неделю:'
+        })
     }
 
 
@@ -118,9 +130,9 @@ tvList.addEventListener('click', event => {
     const target = event.target
     const card = target.closest('.tv-card')
     const modalCardImg = document.querySelector('.modal-img')
-    preloader.style.display = 'block'
-    if (card) {
 
+    if (card) {
+        preloader.style.display = 'block'
         dbService.getTvShow(card.id)
             .then(({
                 poster_path: posterPath,
@@ -130,8 +142,6 @@ tvList.addEventListener('click', event => {
                 overview,
                 homepage
             }) => {
-
-
 
                 if (posterPath) {
                     modalCardImg.src = IMG_URL + posterPath
@@ -173,7 +183,8 @@ tvList.addEventListener('click', event => {
                                 height="300" 
                                 src="https://www.youtube.com/embed/${item.key}"
                                 frameborder="0" 
-                                allowfullscreen>
+                                allowfullscreen
+                                class="mb-3">
                             </iframe>
                             <h4>${item.name}</h4>
                         `
@@ -219,8 +230,9 @@ pagination.addEventListener('click', event => {
 document.addEventListener('DOMContentLoaded', event => {
     const target = event.target
     tvHeadTitle.textContent = 'Новинки на сегодня'
-    dbService.getNewToday().then((response) => {moduleRendCard(response, target)
-        tvHeadTitle.textContent = 'Новинки на сегодня:'
+    dbService.getNewToday().then((response) => {
+        moduleRendCard(response, target)
+        tvHeadTitle.textContent = 'Новинки за сегодня:'
     })
 
 })

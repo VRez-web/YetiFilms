@@ -1,0 +1,88 @@
+
+.preloader {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    }
+    .cssload-triangles {
+      height: 172px;
+      width: 191px;
+      transform: translate(50%, 50%);
+      position: absolute;
+      top: 20%;
+      right: 50%;
+    
+    }
+    
+    .cssload-tri {
+      position: absolute;
+      animation: cssload-pulse 862.5ms ease-in infinite;
+      border-top: 57px solid rgb(3,37,65);
+      border-left: 32px solid transparent;
+      border-right: 32px solid transparent;
+      border-bottom: 0px;
+    }
+    .cssload-tri.cssload-invert {
+      border-top: 0px;
+      border-bottom: 57px solid rgb(3,37,65);
+      border-left: 32px solid transparent;
+      border-right: 32px solid transparent;
+    }
+    .cssload-tri:nth-child(1) {
+      left: 64px;
+    }
+    .cssload-tri:nth-child(2) {
+      left: 32px;
+      top: 57px;
+      animation-delay: -143.75ms;
+    }
+    .cssload-tri:nth-child(3) {
+      left: 64px;
+      top: 57px;
+    }
+    .cssload-tri:nth-child(4) {
+      left: 96px;
+      top: 57px;
+      animation-delay: -718.75ms;
+    }
+    .cssload-tri:nth-child(5) {
+      top: 115px;
+      animation-delay: -287.5ms;
+    }
+    .cssload-tri:nth-child(6) {
+      top: 115px;
+      left: 32px;
+      animation-delay: -287.5ms;
+    }
+    .cssload-tri:nth-child(7) {
+      top: 115px;
+      left: 64px;
+      animation-delay: -431.25ms;
+    }
+    .cssload-tri:nth-child(8) {
+      top: 115px;
+      left: 96px;
+      animation-delay: -575ms;
+    }
+    .cssload-tri:nth-child(9) {
+      top: 115px;
+      left: 128px;
+      animation-delay: -575ms;
+    }
+    
+    @keyframes cssload-pulse {
+      0% {
+        opacity: 1;
+      }
+      16.666% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }

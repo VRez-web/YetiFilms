@@ -1,22 +1,44 @@
-h1,h2,h3,h4,h5{
-    font-weight: 700 !important;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 700 !important;
 }
-ul{
-    list-style: none;
-    padding: 0;
-    margin:0;
-
-}
-
-
-.hide{
-    display: none;
-}
-.show{
-    display: block;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.loading{
-    position: fixed;
-    display: block;
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+.loading {
+  position: fixed;
+  display: block;
+}
+
+%before-after-styles {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: $dark-blue;
+  position: absolute;
+  transform: rotate(90deg);
+  opacity: .6;
+  border-radius: 15px;
+  top:50%;
+}
+%before-after-styles-hover{
+    transform: rotate(0);
+    left:50%;
+    opacity: 1;
+    width: 50px;
+    transform: translate(-50%,0%);
+    border-radius: 15px;
 }
