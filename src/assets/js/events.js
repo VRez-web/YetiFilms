@@ -30,9 +30,16 @@ const closeDropdown = () => {
 
 
 //Работа с меню
+hamburger.addEventListener('click', event => {
+    menu.classList.toggle('open-menu')
+    hamburger.classList.toggle('open')
+    closeDropdown()
+})
+
 document.addEventListener('click', event => {
     if (!event.target.closest('.menu')) {
         menu.classList.remove('open-menu')
+        hamburger.classList.remove('open')
         closeDropdown()
     }
 })
@@ -44,8 +51,10 @@ menu.addEventListener('click', event => {
 
     const target = event.target
     const dropdown = target.closest('.menu__list-dropdown')
-    menu.classList.add('open-menu')
+
     if (dropdown) {
+        menu.classList.add('open-menu')
+        hamburger.classList.add('open')
         dropdown.classList.toggle('active')
 
     }
@@ -93,7 +102,9 @@ searchForm.addEventListener('submit', event => {
     if (value) {
         preloader.style.display = 'block'
 
+
         dbService.getSearchResults(value)
+            .then(console.log(dbService.getSearchResults(value)))
             .then(moduleRendCard)
             .finally(() => {
                 preloader.style.display = ''
@@ -219,7 +230,9 @@ pagination.addEventListener('click', event => {
     const target = event.target
     // pageActive.classList.add('active')
     if (target.classList.contains('page-link')) {
-        dbService.getNextPage(target.textContent).then(moduleRendCard)
+        dbService.getNextPage(target.textContent)
+            .then(moduleRendCard)
+
 
     }
 })

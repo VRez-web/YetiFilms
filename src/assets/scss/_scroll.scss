@@ -1,0 +1,14 @@
+@import "_vars.scss";
+::-webkit-scrollbar {
+  width: 10px;
+
+}
+::-webkit-scrollbar-track {
+  background-color: $tematic-color;
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $dark-blue;
+  border-radius: 15px;
+
+}

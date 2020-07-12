@@ -1,7 +1,7 @@
 @import "_vars.scss";
 @import "_global.scss";
 @import "_preloader.scss";
-
+@import "_scroll.scss";
 .container {
   margin-top: 80px;
 }
@@ -64,6 +64,9 @@
         margin-top: 3px;
       }
     }
+    &.open {
+      background-color: red;
+    }
   }
 
   &__list {
@@ -91,7 +94,7 @@
       width: 100%;
       display: block;
       position: relative;
-      transition: all .3s linear;
+      transition: all 0.3s linear;
 
       &::after {
         content: "";
@@ -112,7 +115,7 @@
       }
 
       &.active {
-      background-color: $ligth-blue;
+        background-color: $ligth-blue;
         &::after {
           content: "";
           background: url(../img/down-arrow.svg);
@@ -151,6 +154,27 @@
   height: 100%;
   background-color: $dark-blue;
   transition: all 0.5s ease;
+}
+.open {
+  position: relative;
+  transition: all .3s ease-in-out;
+  span {
+    &:nth-child(1) {
+      position: absolute;
+      transform: rotate(-45deg);
+      transition: all .3s ease-in-out;
+    }
+    &:nth-child(2) {
+      opacity: 0;
+      transition: all .3s ease-in-out;
+    }
+    &:nth-child(3) {
+      position: absolute;
+      transform: rotate(-140deg);
+      top:16px;
+      transition: all .3s ease-in-out;
+    }
+  }
 }
 .header {
   display: flex;
@@ -253,16 +277,16 @@
     padding: 5px 10px;
     color: $ligth-blue;
     position: relative;
-    transition:all .5s ease;
+    transition: all 0.5s ease;
     &::before {
       @extend %before-after-styles;
       left: -5px;
-      transition:all .5s ease; 
+      transition: all 0.5s ease;
     }
     &::after {
       @extend %before-after-styles;
       right: -5px;
-      transition:all .5s ease;
+      transition: all 0.5s ease;
     }
 
     &:hover {
