@@ -1,0 +1,45 @@
+@media (max-width: 995px) {
+  .header-titles__subtitle {
+    display: none;
+  }
+  .search {
+    width: 100%;
+  }
+}
+@media (max-width: 840px) {
+  .modal-wrapper__img {
+    position: static;
+  }
+  .modal-body__content {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+  }
+  .genres-and-rating {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tv-list {
+    justify-content: center;
+  }
+}
+@media (max-width: 450px) {
+  .genres-and-rating {
+    margin-left: 10px;
+    width: 40%;
+
+    h3{
+      font-size: 21px;
+    }
+  }
+  .modal-wrapper__img {
+    width: auto;
+    height: auto;
+    img {
+      height: 230px;
+      width: 140px;
+    }
+  }
+}

@@ -55,26 +55,30 @@
       </ul>
     </div>
     <!-- Header -->
-    <header class="header container">
-      <section class="header-titles ml-3">
-        <h1 class="header-titles__main">
-          <span class="text-primary">Y</span>eti<span class="text-primary"
-            >F</span
-          >ilms
-        </h1>
-        <h2 class="header-titles__subtitle">Всё о фильмах и сериалах</h2>
-      </section>
-      <section class="search ml-5">
-        <form class="search-form">
-          <h2 class="search-form__title">Поиск</h2>
-          <label
-            ><input
-              type="text"
-              class="search-form__input form-control"
-              placeholder="Введите название..."
-          /></label>
-        </form>
-      </section>
+    <header class="header">
+      <div class="container">
+        <div class="header-inner">
+          <section class="header-titles ml-3">
+            <h1 class="header-titles__main">
+              <span class="text-primary">Y</span>eti<span class="text-primary"
+                >F</span
+              >ilms
+            </h1>
+            <h2 class="header-titles__subtitle">Всё о фильмах и сериалах</h2>
+          </section>
+          <section class="search ml-5">
+            <form class="search-form">
+              <h2 class="search-form__title">Поиск</h2>
+              <label
+                ><input
+                  type="text"
+                  class="search-form__input form-control"
+                  placeholder="Введите название..."
+              /></label>
+            </form>
+          </section>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -102,22 +106,25 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="modal-wrapper__img">
-              <img
-                class="modal-img"
-                src="./assets/img/no-poster.jpg"
-                alt="название шоу"
-              />
-            </div>
             <div class="modal-body__content">
-              <section class="genres">
-                <h3>Жанр:</h3>
-                <ul class="genres-list"></ul>
+              <div class="modal-wrapper__img">
+                <img
+                  class="modal-img"
+                  src="./assets/img/no-poster.jpg"
+                  alt="название шоу"
+                />
+              </div>
+              <section class="genres-and-rating">
+                <div class="genres">
+                  <h3>Жанр:</h3>
+                  <ul class="genres-list"></ul>
+                </div>
+                <div class="mb-2">
+                  <h3>Рейтинг:</h3>
+                  <span class="rating"></span>
+                </div>
               </section>
-              <section class="mb-2">
-                <h3>Рейтинг:</h3>
-                <span class="rating"></span>
-              </section>
+
               <section class="header__info">
                 <h3 dir="auto">Обзор:</h3>
                 <div class="overview" dir="auto">
